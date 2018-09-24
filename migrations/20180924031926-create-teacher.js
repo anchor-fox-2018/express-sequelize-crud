@@ -15,15 +15,21 @@ module.exports = {
                 type: Sequelize.STRING
             },
             email: {
-                type: Sequelize.STRING
+                type: DataTypes.STRING,
+                validate: {
+                    isEmail: {
+                        args: true,
+                        msg: 'Invalid email'
+                    }
+                }
             },
             createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: sequelize.literal('NOW()')
             },
             updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                defaultValue: sequelize.literal('NOW()')
             }
         });
     },
